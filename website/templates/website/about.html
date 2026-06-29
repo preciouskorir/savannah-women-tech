@@ -1,0 +1,257 @@
+<!-- skill:chrome -->
+<style>
+/* Credit line — bottom-right */
+.design-ui-credit {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font: 11px/1 system-ui, sans-serif;
+  color: rgba(128,128,128,0.5);
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 0.4s ease;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hide chrome on touch devices */
+@media (hover: none) {
+  .design-ui-credit { display: none; }
+}
+
+/* Print fixes */
+@media print {
+  * {
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .design-ui-credit { display: none !important; }
+}
+
+</style>
+<script>
+(function () {
+    // Chrome UI (hover devices only): credit badge with idle-fade.
+    // Deferred until body exists since the script may run in <head>.
+    function initChromeUI() {
+        if (!matchMedia('(hover: hover)').matches) return;
+
+        var credit = document.createElement('div');
+        credit.className = 'design-ui-credit';
+        credit.setAttribute('aria-hidden', 'true');
+        credit.innerHTML = '\u{1F49C} by ClickUp Brain';
+        document.body.appendChild(credit);
+
+        var timer = null;
+        var fade = function (out) { credit.style.opacity = out ? '0' : ''; };
+        fade(true);
+        var show = function () {
+            fade(false);
+            clearTimeout(timer);
+            timer = setTimeout(function () { fade(true); }, 3000);
+        };
+        document.addEventListener('mousemove', show);
+        show();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initChromeUI);
+    } else {
+        initChromeUI();
+    }
+})();
+
+</script>
+<!-- /skill:chrome -->
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+{% block meta_description %}Learn about Savannah Women Tech's mission, vision, leadership, and commitment to empowering women across Africa through technology and innovation.{% endblock %}
+
+{% block content %}
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>About <span class="highlight">Savannah Women Tech</span></h1>
+        <p>Empowering women and young people across Africa through technology, education, mentorship, and innovation.</p>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="about-mission fade-in">
+    <div class="about-mission-inner">
+        <div class="about-mission-grid">
+            <div class="about-card about-card-mission">
+                <div class="about-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To empower women and young people across Africa and the diaspora with digital skills, leadership training, mentorship, and entrepreneurship opportunities that enable them to thrive in an increasingly digital and AI-driven world.</p>
+            </div>
+            <div class="about-card about-card-vision">
+                <div class="about-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3>Our Vision</h3>
+                <p>To build one of Africa's most impactful women-focused technology and empowerment ecosystems, reaching thousands of lives through education, innovation, mentorship, entrepreneurship, and opportunity.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values -->
+<section class="about-values fade-in">
+    <div class="about-values-inner">
+        <div class="section-header">
+            <h2>Our Values</h2>
+            <p>The principles that guide everything we do</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-number">01</div>
+                <h4>Empowerment</h4>
+                <p>We believe in unlocking potential and giving every individual the tools to take control of their future.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">02</div>
+                <h4>Innovation</h4>
+                <p>We embrace emerging technologies and creative solutions to address challenges facing our communities.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">03</div>
+                <h4>Inclusivity</h4>
+                <p>We create accessible spaces where everyone, regardless of background, can learn, grow, and contribute.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">04</div>
+                <h4>Excellence</h4>
+                <p>We pursue the highest standards in our programs, partnerships, and impact measurement.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">05</div>
+                <h4>Community</h4>
+                <p>We build supportive networks that uplift individuals and strengthen entire communities.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-number">06</div>
+                <h4>Integrity</h4>
+                <p>We operate with transparency, accountability, and a deep commitment to ethical leadership.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Founder Section -->
+<section class="founder fade-in">
+    <div class="founder-inner">
+        <div class="founder-header">
+            <h2>About the Founder</h2>
+        </div>
+        <div class="founder-grid">
+            <div class="founder-image-col">
+                <div class="founder-image-wrapper">
+                   <img src="{% static 'website/images/Sheilakorir.jpg' %}" alt="Sheila Korir, Founder & CEO of Savannah Women Tech">
+                </div>
+                <div class="founder-name-card">
+                    <h3>Sheila Korir</h3>
+                    <p>Founder & Chief Executive Officer</p>
+                </div>
+            </div>
+            <div class="founder-content">
+                <blockquote class="founder-quote-hero">
+                    "Talent is everywhere. Opportunity should be too."
+                </blockquote>
+
+                <p>I believe that every woman, every young person, and every aspiring entrepreneur deserves the opportunity to learn, grow, lead, and succeed, regardless of where they begin.</p>
+
+                <p>My journey from Kenya to the United Kingdom has given me a unique perspective on both the opportunities and challenges that shape people's lives. Throughout my career in higher education, employability, apprenticeship programmes, stakeholder engagement, and community development, I have worked closely with learners, graduates, and professionals, helping them navigate their personal and professional growth. Along the way, I witnessed a common reality: countless talented individuals were held back not by a lack of ability, but by limited access to opportunities, mentorship, networks, and confidence.</p>
+
+                <p>That realisation inspired me to establish <strong>Savannah Women Tech</strong>.</p>
+
+                <p>Savannah Women Tech was founded with a vision to become more than a training organisation. It is a movement dedicated to empowering women and young people with the knowledge, skills, confidence, and opportunities they need to thrive in an increasingly digital and AI-driven world.</p>
+
+                <p>Our work focuses on digital skills development, leadership, entrepreneurship, mentorship, innovation, and emerging technologies. We are creating an inclusive ecosystem where individuals can unlock their potential, build meaningful connections, and access opportunities that transform their lives and communities.</p>
+
+                <p>As Founder and Chief Executive Officer, I am committed to bridging the gap between talent and opportunity across Africa and the diaspora. Through collaboration, innovation, and purpose-driven leadership, my goal is to build one of Africa's leading women-focused technology and empowerment organisations: one that equips future leaders, supports entrepreneurs, and creates lasting social and economic impact.</p>
+
+                <p>I envision a future where women are not simply participants in technology and innovation but leaders shaping its future. A future where young people have the confidence, skills, and support to pursue ambitious goals, build successful careers and businesses, and become catalysts for positive change within their communities.</p>
+
+                <p class="founder-statement"><strong>This is more than an organisation.</strong><br>It is a mission to unlock potential, inspire leadership, and create opportunities that empower individuals to build brighter futures for themselves and generations to come.</p>
+
+                <div class="founder-purpose">
+                    <div class="founder-purpose-item">
+                        <h4>My Purpose</h4>
+                        <p>To empower women and young people to become confident leaders, innovators, entrepreneurs, and changemakers who transform their communities and shape the future.</p>
+                    </div>
+                    <div class="founder-purpose-item">
+                        <h4>My Vision</h4>
+                        <p>To build one of Africa's most impactful women-focused technology and empowerment ecosystems, reaching thousands of lives through education, innovation, mentorship, entrepreneurship, and opportunity.</p>
+                    </div>
+                </div>
+
+                <blockquote class="founder-quote-closing">
+                    "Success is not only measured by what we achieve ourselves, but by the opportunities we create for others to thrive."
+                    <cite>Sheila Korir</cite>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategic Goals -->
+<section class="about-goals fade-in">
+    <div class="about-goals-inner">
+        <div class="section-header">
+            <h2>Strategic Goals</h2>
+            <p>Our roadmap for transformative impact across Africa</p>
+        </div>
+        <div class="goals-grid">
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h4>Scale Our Reach</h4>
+                <p>Train 50,000 women and young people across 20 African countries by 2030.</p>
+            </div>
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h4>AI & Digital Fluency</h4>
+                <p>Ensure every graduate is equipped with AI literacy, digital skills, and the ability to leverage emerging technologies.</p>
+            </div>
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <h4>Economic Empowerment</h4>
+                <p>Support 5,000 women-led startups and enterprises through incubation, mentorship, and access to funding.</p>
+            </div>
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h4>Sustainable Impact</h4>
+                <p>Build self-sustaining community hubs and partnerships that create lasting change beyond individual programmes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta fade-in">
+    <div class="cta-inner">
+        <h2>Join Our Mission</h2>
+        <p>Whether you want to learn, mentor, partner, or support, there's a place for you at Savannah Women Tech.</p>
+        <div class="cta-actions">
+            <a href="{% url 'programs' %}" class="btn btn-primary">Explore Programs</a>
+            <a href="{% url 'volunteer' %}" class="btn btn-outline">Get Involved</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

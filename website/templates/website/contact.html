@@ -1,0 +1,92 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>Get In <span class="highlight">Touch</span></h1>
+        <p>Have questions? Want to partner with us? We'd love to hear from you.</p>
+    </div>
+</section>
+
+<section class="contact-section fade-in">
+    <div class="contact-inner">
+        <div class="contact-grid">
+            <div class="contact-form-wrapper">
+                <h2>Send Us a Message</h2>
+                <form class="contact-form" method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="programs">Programs & Training</option>
+                            <option value="partnerships">Partnerships</option>
+                            <option value="volunteering">Volunteering</option>
+                            <option value="donations">Donations & Sponsorship</option>
+                            <option value="media">Media & Press</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="contact-info-card">
+                    <h3>Contact Information</h3>
+                    <div class="contact-info-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <div>
+                            <span class="info-label">Email</span>
+                            <a href="mailto:info@savannahwomentech.org">info@savannahwomentech.org</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div>
+                            <span class="info-label">Location</span>
+                            <span>Nairobi, Kenya & London, UK</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <div>
+                            <span class="info-label">Office Hours</span>
+                            <span>Mon - Fri: 9:00 AM - 5:00 PM (EAT)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-social-card">
+                    <h3>Follow Us</h3>
+                    <div class="contact-social-links">
+    <a href="https://twitter.com/Savannahwomente" class="contact-social-link" target="_blank">Twitter</a>
+    <a href="https://www.linkedin.com/company/135224284" class="contact-social-link" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/savannah_women_tech" class="contact-social-link" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@switaukke" class="contact-social-link" target="_blank">TikTok</a>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

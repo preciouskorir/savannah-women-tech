@@ -1,0 +1,67 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>Our <span class="highlight">Gallery</span></h1>
+        <p>Photos, videos, and moments from our programs, events, and community projects.</p>
+    </div>
+</section>
+
+<section class="gallery-section fade-in">
+    <div class="gallery-inner">
+        <div class="gallery-filters">
+            <button class="gallery-filter active">All</button>
+            <button class="gallery-filter">Programs</button>
+            <button class="gallery-filter">Events</button>
+            <button class="gallery-filter">Community</button>
+            <button class="gallery-filter">Hackathons</button>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item gallery-item-tall">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, var(--teal), var(--navy));">
+                    <span>Digital Skills Bootcamp 2026</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, var(--gold), #c05621);">
+                    <span>AI Summit Nairobi</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, #6b21a8, var(--navy));">
+                    <span>Leadership Retreat</span>
+                </div>
+            </div>
+            <div class="gallery-item gallery-item-wide">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, #228b22, var(--teal));">
+                    <span>Community Outreach - Rural Kenya</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, #a83278, var(--gold));">
+                    <span>HealthTech Hackathon</span>
+                </div>
+            </div>
+            <div class="gallery-item gallery-item-tall">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, var(--navy), #0e7490);">
+                    <span>Graduation Ceremony 2025</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, #c05621, var(--gold));">
+                    <span>Entrepreneurship Demo Day</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background: linear-gradient(135deg, var(--teal), #228b22);">
+                    <span>Mentorship Networking Event</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

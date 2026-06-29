@@ -1,0 +1,80 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>Blog & <span class="highlight">Insights</span></h1>
+        <p>Articles, success stories, tech tips, and thought leadership from our community.</p>
+    </div>
+</section>
+
+<section class="blog-section fade-in">
+    <div class="blog-inner">
+        <div class="blog-grid">
+            <article class="blog-card blog-card-featured">
+                <div class="blog-card-img" style="background: linear-gradient(135deg, var(--teal), var(--navy));"></div>
+                <div class="blog-card-content">
+                    <span class="blog-category">AI & Technology</span>
+                    <h2>How African Women Are Leading the AI Revolution</h2>
+                    <p>From Lagos to Nairobi, women are building AI solutions that address uniquely African challenges. Here's how our graduates are making an impact.</p>
+                    <div class="blog-meta">
+                        <span>June 25, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-img" style="background: linear-gradient(135deg, var(--gold), #c05621);"></div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Success Story</span>
+                    <h3>From Teacher to ML Engineer: Fatima's Journey</h3>
+                    <p>How one woman's career pivot through our AI program led to a role at a leading fintech company.</p>
+                    <div class="blog-meta">
+                        <span>June 18, 2026</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-img" style="background: linear-gradient(135deg, #6b21a8, var(--navy));"></div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Digital Skills</span>
+                    <h3>5 In-Demand Tech Skills for 2026 and Beyond</h3>
+                    <p>The tech landscape is shifting fast. Here are the skills that employers are actively seeking right now.</p>
+                    <div class="blog-meta">
+                        <span>June 12, 2026</span>
+                        <span>3 min read</span>
+                    </div>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-img" style="background: linear-gradient(135deg, #228b22, var(--teal));"></div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Entrepreneurship</span>
+                    <h3>Building a Startup While Working Full-Time</h3>
+                    <p>Practical advice from three graduates who launched successful businesses while maintaining their day jobs.</p>
+                    <div class="blog-meta">
+                        <span>June 5, 2026</span>
+                        <span>6 min read</span>
+                    </div>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-img" style="background: linear-gradient(135deg, #a83278, var(--gold));"></div>
+                <div class="blog-card-content">
+                    <span class="blog-category">Leadership</span>
+                    <h3>The Mentorship Gap: Why Women Need Sponsors, Not Just Mentors</h3>
+                    <p>Understanding the difference between mentorship and sponsorship, and why both matter for career growth.</p>
+                    <div class="blog-meta">
+                        <span>May 28, 2026</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

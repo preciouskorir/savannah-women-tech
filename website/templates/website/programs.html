@@ -1,0 +1,327 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Programs{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>Our <span class="highlight">Programs</span></h1>
+        <p>Comprehensive pathways designed to build skills, confidence, and careers in technology across Africa.</p>
+    </div>
+</section>
+
+<section class="programs-overview fade-in">
+    <div class="programs-overview-inner">
+        <div class="programs-intro">
+            <h2>Transforming Lives Through Technology Education</h2>
+            <p>Each of our programs is carefully designed to meet women and young people where they are, providing clear pathways from foundational skills to advanced expertise, leadership, and entrepreneurship.</p>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail fade-in" id="digital-skills">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: var(--teal);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div>
+                <h2>Digital Skills Academy</h2>
+                <p class="program-detail-tagline">From beginner to job-ready in 12 weeks</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>Our flagship program provides intensive, hands-on training in the most in-demand technology skills. Whether you're starting from scratch or looking to upskill, our bootcamps take you from fundamentals to building real-world projects.</p>
+                <h4>What You'll Learn</h4>
+                <ul class="program-list">
+                    <li>Full-stack web development (HTML, CSS, JavaScript, Python, Django)</li>
+                    <li>Mobile app development (React Native, Flutter)</li>
+                    <li>UI/UX design and product thinking</li>
+                    <li>Cloud computing (AWS, Google Cloud)</li>
+                    <li>Database design and management</li>
+                    <li>Version control and collaborative development</li>
+                </ul>
+                <h4>Program Details</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Duration</span><span class="meta-value">12 - 24 weeks</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Format</span><span class="meta-value">Hybrid (Online + In-person)</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Level</span><span class="meta-value">Beginner to Advanced</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Certificate</span><span class="meta-value">Yes, upon completion</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Outcomes</h4>
+                    <div class="outcome-stat"><span class="outcome-number">92%</span><span class="outcome-label">Employment within 6 months</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">2,500+</span><span class="outcome-label">Graduates to date</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">150+</span><span class="outcome-label">Hiring partner companies</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail program-detail-alt fade-in" id="ai-training">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: var(--gold);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B263B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <div>
+                <h2>AI & Machine Learning</h2>
+                <p class="program-detail-tagline">Master the technology shaping the future</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>Our AI program demystifies artificial intelligence and equips women with practical skills to build, deploy, and lead AI initiatives. From data science fundamentals to advanced machine learning, you'll work on real projects solving African challenges.</p>
+                <h4>What You'll Learn</h4>
+                <ul class="program-list">
+                    <li>Python for data science and machine learning</li>
+                    <li>Natural Language Processing (NLP) and computer vision</li>
+                    <li>Prompt engineering and generative AI tools</li>
+                    <li>Responsible AI and ethics in technology</li>
+                    <li>AI product development and deployment</li>
+                    <li>Data analysis, visualization, and storytelling</li>
+                </ul>
+                <h4>Program Details</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Duration</span><span class="meta-value">16 weeks</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Format</span><span class="meta-value">Online with live sessions</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Level</span><span class="meta-value">Intermediate</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Prerequisites</span><span class="meta-value">Basic Python knowledge</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Outcomes</h4>
+                    <div class="outcome-stat"><span class="outcome-number">85%</span><span class="outcome-label">Career transition rate</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">800+</span><span class="outcome-label">Women trained in AI</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">45+</span><span class="outcome-label">AI projects deployed</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail fade-in" id="leadership">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: var(--navy);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div>
+                <h2>Leadership & Mentorship</h2>
+                <p class="program-detail-tagline">Developing Africa's next generation of women leaders</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>Our leadership program pairs emerging women leaders with experienced executives, providing structured mentorship, coaching, and development opportunities that accelerate career growth and build lasting professional networks.</p>
+                <h4>What You'll Gain</h4>
+                <ul class="program-list">
+                    <li>One-on-one mentorship with industry leaders and executives</li>
+                    <li>Executive presence and public speaking training</li>
+                    <li>Strategic thinking and decision-making frameworks</li>
+                    <li>Networking with peers across 12 African countries</li>
+                    <li>Personal branding and career positioning</li>
+                    <li>Board readiness and corporate governance training</li>
+                </ul>
+                <h4>Program Details</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Duration</span><span class="meta-value">6 months</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Format</span><span class="meta-value">Hybrid with retreats</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Cohort Size</span><span class="meta-value">30 women per cohort</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Selection</span><span class="meta-value">Application-based</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Outcomes</h4>
+                    <div class="outcome-stat"><span class="outcome-number">78%</span><span class="outcome-label">Promoted within 12 months</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">200+</span><span class="outcome-label">Mentors in our network</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">500+</span><span class="outcome-label">Women leaders developed</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail program-detail-alt fade-in" id="entrepreneurship">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: #a83278;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <div>
+                <h2>Entrepreneurship Hub</h2>
+                <p class="program-detail-tagline">Turn your idea into a thriving business</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>Our entrepreneurship program supports women at every stage of their business journey. From ideation to scaling, we provide the knowledge, tools, networks, and funding access needed to build sustainable, impactful businesses across Africa.</p>
+                <h4>What You'll Learn</h4>
+                <ul class="program-list">
+                    <li>Business model development and validation</li>
+                    <li>Financial planning, budgeting, and investor readiness</li>
+                    <li>Pitch coaching and storytelling for fundraising</li>
+                    <li>Digital marketing and customer acquisition</li>
+                    <li>Legal structures and regulatory compliance</li>
+                    <li>Access to angel investors and venture capital networks</li>
+                </ul>
+                <h4>Program Details</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Duration</span><span class="meta-value">6 months incubation</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Format</span><span class="meta-value">In-person + Online</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Funding</span><span class="meta-value">Seed grants available</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Demo Day</span><span class="meta-value">Pitch to investors</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Outcomes</h4>
+                    <div class="outcome-stat"><span class="outcome-number">850+</span><span class="outcome-label">Businesses launched</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">$2.5M+</span><span class="outcome-label">Funding raised by graduates</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">3,000+</span><span class="outcome-label">Jobs created</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail program-detail-alt fade-in" id="scholarships">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: #c05621;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+            <div>
+                <h2>Scholarships & Grants</h2>
+                <p class="program-detail-tagline">Removing financial barriers to tech education</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>We believe financial constraints should never prevent talented women from accessing world-class technology education. Our scholarship and grants program provides full and partial funding for women pursuing STEM education, certifications, and advanced training.</p>
+                <h4>What's Available</h4>
+                <ul class="program-list">
+                    <li>Full scholarships for our Digital Skills and AI bootcamps</li>
+                    <li>Partial tuition support for university STEM programs</li>
+                    <li>Certification exam funding (AWS, Google, Microsoft)</li>
+                    <li>Conference and summit attendance grants</li>
+                    <li>Equipment and internet access support</li>
+                    <li>Living stipends for full-time program participants</li>
+                </ul>
+                <h4>Eligibility</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Who</span><span class="meta-value">Women 18-35 in Africa</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Selection</span><span class="meta-value">Merit + need based</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Cycles</span><span class="meta-value">Quarterly applications</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Coverage</span><span class="meta-value">50% to 100% funding</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Impact</h4>
+                    <div class="outcome-stat"><span class="outcome-number">1,200+</span><span class="outcome-label">Scholarships awarded</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">$1.8M</span><span class="outcome-label">Total funding distributed</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">12</span><span class="outcome-label">Countries reached</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply for Scholarship</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail fade-in" id="mentorship">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: #6b21a8;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div>
+                <h2>Mentorship Network</h2>
+                <p class="program-detail-tagline">Guided growth through meaningful connections</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>Our dedicated mentorship network connects women at all career stages with experienced professionals who provide guidance, accountability, and support. Beyond one-on-one pairing, the network offers group sessions, peer circles, and community events.</p>
+                <h4>How It Works</h4>
+                <ul class="program-list">
+                    <li>Personalized matching based on goals, industry, and experience</li>
+                    <li>Monthly one-on-one sessions with your mentor</li>
+                    <li>Peer learning circles with 8-10 women at similar stages</li>
+                    <li>Quarterly networking events and fireside chats</li>
+                    <li>Career planning tools and goal-tracking support</li>
+                    <li>Access to our private community and job board</li>
+                </ul>
+                <h4>Program Details</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Duration</span><span class="meta-value">Ongoing (6-month cycles)</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Format</span><span class="meta-value">Virtual + In-person</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Cost</span><span class="meta-value">Free for mentees</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Matching</span><span class="meta-value">Within 2 weeks</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Network</h4>
+                    <div class="outcome-stat"><span class="outcome-number">200+</span><span class="outcome-label">Active mentors</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">1,500+</span><span class="outcome-label">Mentees supported</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">95%</span><span class="outcome-label">Satisfaction rate</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Find a Mentor</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="program-detail program-detail-alt fade-in" id="community">
+    <div class="program-detail-inner">
+        <div class="program-detail-header">
+            <div class="program-detail-icon" style="background: #0e7490;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div>
+                <h2>Community Outreach</h2>
+                <p class="program-detail-tagline">Bringing technology education to underserved communities</p>
+            </div>
+        </div>
+        <div class="program-detail-grid">
+            <div class="program-detail-content">
+                <p>We take our programs directly to communities that lack access to technology education. Through mobile labs, school partnerships, and community centres, we reach women and girls in rural and underserved areas, ensuring no one is left behind in the digital revolution.</p>
+                <h4>Our Approach</h4>
+                <ul class="program-list">
+                    <li>Mobile computer labs visiting rural schools and communities</li>
+                    <li>Digital literacy workshops for women in informal settlements</li>
+                    <li>Partnerships with secondary schools for girls in STEM</li>
+                    <li>Community centre tech hubs with free internet access</li>
+                    <li>Parent and teacher digital awareness sessions</li>
+                    <li>Local language content and culturally relevant curriculum</li>
+                </ul>
+                <h4>Program Details</h4>
+                <div class="program-meta">
+                    <div class="program-meta-item"><span class="meta-label">Reach</span><span class="meta-value">Rural and peri-urban areas</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Age Group</span><span class="meta-value">Girls 13+ and women</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Cost</span><span class="meta-value">Completely free</span></div>
+                    <div class="program-meta-item"><span class="meta-label">Languages</span><span class="meta-value">English, Swahili, local</span></div>
+                </div>
+            </div>
+            <div class="program-detail-sidebar">
+                <div class="program-outcomes">
+                    <h4>Reach</h4>
+                    <div class="outcome-stat"><span class="outcome-number">8,000+</span><span class="outcome-label">Women and girls reached</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">45</span><span class="outcome-label">Community centres</span></div>
+                    <div class="outcome-stat"><span class="outcome-number">120+</span><span class="outcome-label">Schools partnered</span></div>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">Partner With Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta fade-in">
+    <div class="cta-inner">
+        <h2>Ready to Start Your Journey?</h2>
+        <p>No matter where you are in your tech journey, we have a program that fits. Apply today and join thousands of women transforming their futures.</p>
+        <div class="cta-actions">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Apply to a Program</a>
+            <a href="{% url 'donate' %}" class="btn btn-outline">Fund a Scholarship</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

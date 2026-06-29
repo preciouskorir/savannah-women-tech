@@ -1,0 +1,338 @@
+<!-- skill:chrome -->
+<style>
+/* Credit line — bottom-right */
+.design-ui-credit {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font: 11px/1 system-ui, sans-serif;
+  color: rgba(128,128,128,0.5);
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 0.4s ease;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hide chrome on touch devices */
+@media (hover: none) {
+  .design-ui-credit { display: none; }
+}
+
+/* Print fixes */
+@media print {
+  * {
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .design-ui-credit { display: none !important; }
+}
+
+</style>
+<script>
+(function () {
+    // Chrome UI (hover devices only): credit badge with idle-fade.
+    // Deferred until body exists since the script may run in <head>.
+    function initChromeUI() {
+        if (!matchMedia('(hover: hover)').matches) return;
+
+        var credit = document.createElement('div');
+        credit.className = 'design-ui-credit';
+        credit.setAttribute('aria-hidden', 'true');
+        credit.innerHTML = '\u{1F49C} by ClickUp Brain';
+        document.body.appendChild(credit);
+
+        var timer = null;
+        var fade = function (out) { credit.style.opacity = out ? '0' : ''; };
+        fade(true);
+        var show = function () {
+            fade(false);
+            clearTimeout(timer);
+            timer = setTimeout(function () { fade(true); }, 3000);
+        };
+        document.addEventListener('mousemove', show);
+        show();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initChromeUI);
+    } else {
+        initChromeUI();
+    }
+})();
+
+</script>
+<!-- /skill:chrome -->
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Empowering Africa's Future</div>
+            <h1>Building the Next Generation of <span class="highlight">Women Tech Leaders</span></h1>
+            <p class="hero-description">We equip women and girls across Africa with digital skills, AI education, mentorship, and entrepreneurship training to lead the continent's technological transformation.</p>
+            <div class="hero-actions">
+                <a href="{% url 'programs' %}" class="btn btn-primary">Explore Programs <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="{% url 'about' %}" class="btn btn-outline">Our Story</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-image-wrapper">
+                <img src="{% static 'website/images/hero.jpg' %}" alt="African women learning technology together" onerror="this.parentElement.innerHTML='<div class=hero-image-placeholder></div>'">
+            </div>
+            <div class="hero-stat-float">
+                <div class="number">15K+</div>
+                <div class="label">Women<br>Empowered</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission -->
+<section class="mission fade-in">
+    <div class="mission-inner">
+        <div class="mission-text">
+            <h2>Our Mission: Technology as a Path to Empowerment</h2>
+            <p>Savannah Women Tech bridges the digital gender gap across Africa by providing world-class technology education, mentorship, and entrepreneurship opportunities that transform communities and build sustainable futures.</p>
+            <p>We believe every woman and girl deserves access to the tools, knowledge, and networks that drive the digital economy.</p>
+        </div>
+        <div class="mission-pillars">
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h4>Digital Skills</h4>
+                <p>Web development, data science, and software engineering training</p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h4>AI Education</h4>
+                <p>Machine learning, prompt engineering, and AI product development</p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h4>Leadership</h4>
+                <p>Executive mentorship and leadership development programs</p>
+            </div>
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/><line x1="12" y1="3" x2="12" y2="15"/><path d="M4 19h16"/></svg>
+                </div>
+                <h4>Innovation</h4>
+                <p>Startup incubation, hackathons, and innovation labs</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Stats -->
+<section class="impact fade-in">
+    <div class="impact-inner">
+        <h2>Our Impact Across Africa</h2>
+        <p>Measurable change, one community at a time</p>
+        <div class="impact-grid">
+            <div class="impact-item">
+                <div class="impact-number" data-target="15000">0</div>
+                <div class="impact-label">Women & Girls Trained</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number" data-target="12">0</div>
+                <div class="impact-label">African Countries</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number" data-target="850">0</div>
+                <div class="impact-label">Businesses Launched</div>
+            </div>
+            <div class="impact-item">
+                <div class="impact-number" data-target="95">0</div>
+                <div class="impact-label">% Employment Rate</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Programs -->
+<section class="programs fade-in">
+    <div class="programs-inner">
+        <div class="section-header">
+            <h2>Our Programs</h2>
+            <p>Comprehensive pathways designed to build skills, confidence, and careers in technology</p>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h3>Digital Skills Academy</h3>
+                <p>Full-stack web development, mobile apps, UI/UX design, and cloud computing bootcamps for beginners to advanced learners.</p>
+                <a href="{% url 'programs' %}" class="program-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>AI & Machine Learning</h3>
+                <p>Hands-on training in artificial intelligence, data science, natural language processing, and responsible AI development.</p>
+                <a href="{% url 'programs' %}" class="program-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Leadership & Mentorship</h3>
+                <p>One-on-one mentoring with industry leaders, executive coaching, public speaking, and strategic leadership workshops.</p>
+                <a href="{% url 'programs' %}" class="program-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <h3>Entrepreneurship Hub</h3>
+                <p>Startup incubation, business planning, funding readiness, pitch coaching, and access to investor networks.</p>
+                <a href="{% url 'programs' %}" class="program-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                </div>
+                <h3>Innovation Labs</h3>
+                <p>Hackathons, design sprints, and collaborative spaces where women solve real community challenges with technology.</p>
+                <a href="{% url 'programs' %}" class="program-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </div>
+                <h3>Scholarships & Grants</h3>
+                <p>Full and partial scholarships for women pursuing STEM education, certifications, and advanced technical training.</p>
+                <a href="{% url 'programs' %}" class="program-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials fade-in">
+    <div class="testimonials-inner">
+        <div class="section-header">
+            <h2>Voices of Change</h2>
+            <p>Stories from women whose lives have been transformed through our programs</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p class="testimonial-quote">Savannah Women Tech didn't just teach me to code. It gave me the confidence to build my own startup. Today I employ 12 people and serve thousands of customers across East Africa.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AW</div>
+                    <div>
+                        <div class="testimonial-name">Amina Wanjiku</div>
+                        <div class="testimonial-role">CEO, TechServe Kenya | Cohort 2023</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-quote">The AI program opened doors I never knew existed. I went from teaching high school math to leading a machine learning team at a fintech company in just 18 months.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">FN</div>
+                    <div>
+                        <div class="testimonial-name">Fatima Ndegwa</div>
+                        <div class="testimonial-role">ML Engineer, PayStack | AI Cohort 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners -->
+<section class="partners fade-in">
+    <div class="partners-inner">
+        <h2>Trusted By Leading Organizations</h2>
+        <div class="partners-logos">
+            <div class="partner-logo">Google.org</div>
+            <div class="partner-logo">Microsoft</div>
+            <div class="partner-logo">USAID</div>
+            <div class="partner-logo">African Dev Bank</div>
+            <div class="partner-logo">UN Women</div>
+            <div class="partner-logo">Safaricom</div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News -->
+<section class="news fade-in">
+    <div class="news-inner">
+        <div class="section-header">
+            <h2>Latest Updates</h2>
+            <p>News, insights, and stories from across our community</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-featured">
+                <div class="news-featured-img"></div>
+                <div class="news-featured-content">
+                    <span class="news-tag">Announcement</span>
+                    <h3>Savannah Women Tech Launches Pan-African AI Fellowship for 500 Women</h3>
+                    <p>Our largest initiative yet will provide fully-funded AI training, mentorship, and job placement across 12 African nations starting January 2027.</p>
+                    <div class="news-date">June 25, 2026</div>
+                </div>
+            </div>
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-tag">Success Story</span>
+                    <h4>Graduate Spotlight: How Njeri Built a Climate Tech Startup</h4>
+                    <p>June 20, 2026</p>
+                </div>
+                <div class="news-item">
+                    <span class="news-tag">Events</span>
+                    <h4>Registration Open: Women in AI Summit Nairobi 2026</h4>
+                    <p>June 15, 2026</p>
+                </div>
+                <div class="news-item">
+                    <span class="news-tag">Partnership</span>
+                    <h4>New Partnership with Google to Train 2,000 Women in Cloud</h4>
+                    <p>June 10, 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter fade-in">
+    <div class="newsletter-inner">
+        <h2>Stay Connected</h2>
+        <p>Get updates on programs, events, and impact stories delivered to your inbox.</p>
+        <form class="newsletter-form" method="post" action="{% url 'home' %}">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Enter your email address" aria-label="Email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta fade-in">
+    <div class="cta-inner">
+        <h2>Ready to Shape Africa's Digital Future?</h2>
+        <p>Whether you want to learn, mentor, partner, or support our mission, there's a place for you at Savannah Women Tech.</p>
+        <div class="cta-actions">
+            <a href="{% url 'programs' %}" class="btn btn-primary">Apply to a Program</a>
+            <a href="{% url 'volunteer' %}" class="btn btn-outline">Become a Mentor</a>
+            <a href="{% url 'donate' %}" class="btn btn-outline">Support Our Mission</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

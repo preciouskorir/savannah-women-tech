@@ -1,0 +1,98 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>Events & <span class="highlight">Workshops</span></h1>
+        <p>Join our upcoming events, hackathons, summits, and community gatherings across Africa.</p>
+    </div>
+</section>
+
+<section class="events-section fade-in">
+    <div class="events-inner">
+        <div class="section-header">
+            <h2>Upcoming Events</h2>
+            <p>Connect, learn, and grow with our community</p>
+        </div>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-date-badge">
+                    <span class="event-month">JUL</span>
+                    <span class="event-day">15</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-type">Summit</span>
+                    <h3>Women in AI Summit Nairobi 2026</h3>
+                    <p>A full-day summit bringing together women leading AI innovation across Africa. Panels, workshops, and networking.</p>
+                    <div class="event-details">
+                        <span>Nairobi, Kenya</span>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date-badge">
+                    <span class="event-month">JUL</span>
+                    <span class="event-day">28</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-type">Hackathon</span>
+                    <h3>HealthTech Hackathon for Women</h3>
+                    <p>48-hour hackathon focused on building technology solutions for maternal health challenges in East Africa.</p>
+                    <div class="event-details">
+                        <span>Virtual + Nairobi Hub</span>
+                        <span>48 Hours</span>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date-badge">
+                    <span class="event-month">AUG</span>
+                    <span class="event-day">10</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-type">Workshop</span>
+                    <h3>Introduction to Prompt Engineering</h3>
+                    <p>Hands-on workshop teaching effective prompt engineering techniques for ChatGPT, Claude, and other AI tools.</p>
+                    <div class="event-details">
+                        <span>Online (Zoom)</span>
+                        <span>2:00 PM - 5:00 PM</span>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date-badge">
+                    <span class="event-month">AUG</span>
+                    <span class="event-day">25</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-type">Networking</span>
+                    <h3>Founder's Circle: Women in Tech Meetup</h3>
+                    <p>Monthly meetup for women founders and aspiring entrepreneurs to share experiences, challenges, and opportunities.</p>
+                    <div class="event-details">
+                        <span>Nairobi & Lagos</span>
+                        <span>6:00 PM - 8:00 PM</span>
+                    </div>
+                    <a href="{% url 'contact' %}" class="btn btn-primary">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta fade-in">
+    <div class="cta-inner">
+        <h2>Want to Host an Event With Us?</h2>
+        <p>We partner with organizations to deliver impactful tech events across Africa.</p>
+        <div class="cta-actions">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Get in Touch</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- skill:chrome -->
+<style>
+/* Credit line — bottom-right */
+.design-ui-credit {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font: 11px/1 system-ui, sans-serif;
+  color: rgba(128,128,128,0.5);
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 0.4s ease;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hide chrome on touch devices */
+@media (hover: none) {
+  .design-ui-credit { display: none; }
+}
+
+/* Print fixes */
+@media print {
+  * {
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .design-ui-credit { display: none !important; }
+}
+
+</style>
+<script>
+(function () {
+    // Chrome UI (hover devices only): credit badge with idle-fade.
+    // Deferred until body exists since the script may run in <head>.
+    function initChromeUI() {
+        if (!matchMedia('(hover: hover)').matches) return;
+
+        var credit = document.createElement('div');
+        credit.className = 'design-ui-credit';
+        credit.setAttribute('aria-hidden', 'true');
+        credit.innerHTML = '\u{1F49C} by ClickUp Brain';
+        document.body.appendChild(credit);
+
+        var timer = null;
+        var fade = function (out) { credit.style.opacity = out ? '0' : ''; };
+        fade(true);
+        var show = function () {
+            fade(false);
+            clearTimeout(timer);
+            timer = setTimeout(function () { fade(true); }, 3000);
+        };
+        document.addEventListener('mousemove', show);
+        show();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initChromeUI);
+    } else {
+        initChromeUI();
+    }
+})();
+
+</script>
+<!-- /skill:chrome -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Savannah Women Tech empowers women and girls across Africa through technology, digital skills, AI education, leadership, mentorship, and innovation.{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Savannah Women Tech - Empowering African Women Through Technology{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Building the next generation of women tech leaders across Africa through digital skills, AI training, mentorship, and innovation.{% endblock %}">
+    <meta property="og:type" content="website">
+    <title>{% block title %}Savannah Women Tech{% endblock %} | Empowering Women Through Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'website/css/main.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-inner">
+            <a href="{% url 'home' %}" class="nav-logo">
+                <img src="{% static 'website/images/logo.png' %}" alt="Savannah Women Tech" class="nav-logo-img">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+                <li><a href="{% url 'programs' %}" class="{% if request.resolver_match.url_name == 'programs' %}active{% endif %}">Programs</a></li>
+                <li><a href="{% url 'events' %}" class="{% if request.resolver_match.url_name == 'events' %}active{% endif %}">Events</a></li>
+                <li><a href="{% url 'blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog</a></li>
+                <li><a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
+                <li><a href="{% url 'volunteer' %}" class="{% if request.resolver_match.url_name == 'volunteer' %}active{% endif %}">Volunteer</a></li>
+                <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+                <li><a href="{% url 'donate' %}" class="nav-donate">Donate</a></li>
+            </ul>
+            <div class="nav-hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="{% url 'home' %}" class="footer-logo-link">
+                        <img src="{% static 'website/images/logo.png' %}" alt="Savannah Women Tech" class="footer-logo-img">
+                    </a>
+                    <p>Empowering women and girls across Africa through technology, education, and innovation.</p>
+                    <p class="footer-tagline">Empowering Women. Accelerating Futures. Transforming Communities.</p>
+                    <div class="footer-social">
+    <a href="https://twitter.com/Savannahwomente" aria-label="Twitter" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+    <a href="https://www.linkedin.com/company/135224284" aria-label="LinkedIn" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <a href="https://www.instagram.com/savannah_women_tech" aria-label="Instagram" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    <a href="https://www.tiktok.com/@switaukke" aria-label="TikTok" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+</div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'programs' %}">Programs</a></li>
+                        <li><a href="{% url 'events' %}">Events</a></li>
+                        <li><a href="{% url 'blog' %}">Blog</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'programs' %}">Digital Skills</a></li>
+                        <li><a href="{% url 'programs' %}">AI Training</a></li>
+                        <li><a href="{% url 'programs' %}">Leadership</a></li>
+                        <li><a href="{% url 'programs' %}">Entrepreneurship</a></li>
+                        <li><a href="{% url 'programs' %}">Scholarships</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Get Involved</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'volunteer' %}">Volunteer</a></li>
+                        <li><a href="{% url 'donate' %}">Donate</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; {% now "Y" %} Savannah Women Tech. All rights reserved.</span>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'website/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
