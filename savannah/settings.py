@@ -126,4 +126,4 @@ STATICFILES_DIRS = [
 
 import os
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://savannah-women-tech.onrender.com']
