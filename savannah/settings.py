@@ -130,4 +130,9 @@ STATICFILES_DIRS = [
 
 import os
 
-ALLOWED_HOSTS = ['https://savannah-women-tech.onrender.com']
+ALLOWED_HOSTS = [
+    "preciousjk.pythonanywhere.com",
+    "savannah-women-tech.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
