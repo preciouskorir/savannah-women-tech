@@ -20,15 +20,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7v$$3!m3*g6@)lxcd1_v@w@k%%0lfi7k31rmu+#n5bf-t@d_$('
+import os
+
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-7v$$3!m3*g6@)lxcd1_v@w@k%%0lfi7k31rmu+#n5bf-t@d_$("
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = [
-    "preciousjk.pythonanywhere.com",
-    "127.0.0.1",
     "localhost",
+    "127.0.0.1",
+    ".azurewebsites.net",
 ]
 
 
@@ -120,19 +125,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Static files (CSS, JavaScript, Images)
 
 STATIC_URL = "/static/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
     BASE_DIR / "website/static",
 ]
 
-import os
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
-ALLOWED_HOSTS = [
-    "preciousjk.pythonanywhere.com",
-    "savannah-women-tech.onrender.com",
-    "localhost",
-    "127.0.0.1",
-]
