@@ -10,32 +10,76 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+def _env_bool(name: str, default: bool = False) -> bool:
+    """Read a boolean from the environment ('1', 'true', 'yes', 'on' are true)."""
+    return os.environ.get(name, str(default)).lower() in ('1', 'true', 'yes', 'on')
+
+
+def _env_list(name: str, default: str = '') -> list:
+    """Read a comma-separated list from the environment."""
+    return [item.strip() for item in os.environ.get(name, default).split(',') if item.strip()]
+
+
+# Azure App Service sets WEBSITE_HOSTNAME to the site's public hostname
+# ("myapp.azurewebsites.net"). It is empty everywhere else.
+WEBSITE_HOSTNAME = os.environ.get('WEBSITE_HOSTNAME', '').strip()
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-import os
-
-SECRET_KEY = os.getenv(
-    "SECRET_KEY",
-    "django-insecure-7v$$3!m3*g6@)lxcd1_v@w@k%%0lfi7k31rmu+#n5bf-t@d_$("
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-7v$$3!m3*g6@)lxcd1_v@w@k%%0lfi7k31rmu+#n5bf-t@d_$(',
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = _env_bool('DJANGO_DEBUG', default=True)
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    ".azurewebsites.net",
-    "savanahwomentech-hdckh8a6fhhbbraz.azurewebsites.net",
-]
+DEFAULT_ALLOWED_HOSTS = (
+    'localhost,127.0.0.1,[::1],'
+    'savanahwomentech-hdckh8a6fhhbbraz.azurewebsites.net,'
+    'savanahwomentech.azurewebsites.net,'
+    'savannah-women-tech.onrender.com'
+)
+
+ALLOWED_HOSTS = _env_list('DJANGO_ALLOWED_HOSTS', DEFAULT_ALLOWED_HOSTS)
+if WEBSITE_HOSTNAME and WEBSITE_HOSTNAME not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(WEBSITE_HOSTNAME)
+
+CSRF_TRUSTED_ORIGINS = _env_list('DJANGO_CSRF_TRUSTED_ORIGINS')
+if WEBSITE_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{WEBSITE_HOSTNAME}')
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS += ['http://localhost:8000', 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(CSRF_TRUSTED_ORIGINS))
+
+
+# Azure App Service terminates TLS at the front end and forwards the original
+# scheme in X-Forwarded-Proto, which Django ignores by default. Without this,
+# request.is_secure() is False, so a browser posting to the admin over HTTPS
+# sends "Origin: https://<host>" while Django expects "http://<host>" and the
+# login fails CSRF verification.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = int(os.environ.get('DJANGO_SECURE_HSTS_SECONDS', '3600'))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # App Service already redirects HTTP to HTTPS at the front end, and turning
+    # this on makes the platform's internal health probe follow a redirect
+    # instead of seeing a 200. Enable only if you front the app with a proxy
+    # that forwards X-Forwarded-Proto correctly.
+    SECURE_SSL_REDIRECT = _env_bool('DJANGO_SECURE_SSL_REDIRECT', default=False)
 
 
 # Application definition
@@ -87,7 +131,7 @@ WSGI_APPLICATION = 'savannah.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': Path(os.environ.get('DJANGO_DB_PATH', BASE_DIR / 'db.sqlite3')),
     }
 }
 
@@ -137,8 +181,46 @@ STATICFILES_DIRS = [
 ]
 
 STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        # Non-manifest storage: templates reference a few optional images that
+        # are not committed, and manifest storage would raise on those.
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
     },
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# App Service captures stdout/stderr into /home/LogFiles and the log stream, so
+# a console handler is all that is needed. Without this, DEBUG=False hides most
+# of what the app is doing.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '{levelname} {asctime} {name} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
