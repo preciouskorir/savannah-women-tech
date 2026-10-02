@@ -57,6 +57,47 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_053AB8F9A12C4D1795D2BC8FDFEA850B }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5C34CC9C9C1B43BD995C3B3A10D64A43 }}
 
+      - name: Configure Django production settings
+        shell: bash
+        run: |
+          APP_NAME="savanahwomentech-hdckh8a6fhhbbraz"
+
+          RESOURCE_GROUP=$(az webapp show \
+            --name "$APP_NAME" \
+            --query resourceGroup \
+            --output tsv)
+
+          echo "Using resource group: $RESOURCE_GROUP"
+
+          EXISTING_KEY=$(az webapp config appsettings list \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$APP_NAME" \
+            --query "[?name=='DJANGO_SECRET_KEY'].name" \
+            --output tsv)
+
+          if [ -z "$EXISTING_KEY" ]; then
+            echo "DJANGO_SECRET_KEY does not exist. Creating one..."
+
+            SECRET_KEY=$(python -c "import secrets; print(secrets.token_urlsafe(64))")
+
+            echo "::add-mask::$SECRET_KEY"
+
+            az webapp config appsettings set \
+              --resource-group "$RESOURCE_GROUP" \
+              --name "$APP_NAME" \
+              --settings \
+                DJANGO_SECRET_KEY="$SECRET_KEY" \
+                DJANGO_DEBUG=false
+          else
+            echo "DJANGO_SECRET_KEY already exists. Keeping the existing secret."
+
+            az webapp config appsettings set \
+              --resource-group "$RESOURCE_GROUP" \
+              --name "$APP_NAME" \
+              --settings \
+                DJANGO_DEBUG=false
+          fi
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
