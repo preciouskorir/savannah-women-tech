@@ -62,10 +62,16 @@ jobs:
         run: |
           APP_NAME="savanahwomentech-hdckh8a6fhhbbraz"
 
-          RESOURCE_GROUP=$(az webapp show \
+          RESOURCE_GROUP=$(az resource list \
             --name "$APP_NAME" \
-            --query resourceGroup \
+            --resource-type "Microsoft.Web/sites" \
+            --query "[0].resourceGroup" \
             --output tsv)
+
+          if [ -z "$RESOURCE_GROUP" ]; then
+            echo "ERROR: Could not find the Azure App Service resource group."
+            exit 1
+          fi
 
           echo "Using resource group: $RESOURCE_GROUP"
 
