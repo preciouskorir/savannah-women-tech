@@ -2940,3 +2940,19 @@ ul {
         font-size: 0.85rem;
     }
 }
+/* ============================================
+   CHRISTINE DIRECTOR IMAGE
+   ============================================ */
+
+.christine-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7f8;
+}
+
+.christine-image-wrapper img {
+    width: 75%;
+    height: 90%;
+    object-fit: contain;
+}
