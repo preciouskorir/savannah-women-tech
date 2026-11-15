@@ -101,8 +101,12 @@ jobs:
               --resource-group "$RESOURCE_GROUP" \
               --name "$APP_NAME" \
               --settings \
-                DJANGO_DEBUG=false
+                DJANGO_DEBUG=false \
+                UV_COMPILE_BYTECODE=0
           fi
+
+      - name: Allow App Service configuration restart to finish
+        run: sleep 30
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
