@@ -1,72 +1,4 @@
-<!-- skill:chrome -->
-<style>
-/* Credit line — bottom-right */
-.design-ui-credit {
-  position: fixed;
-  bottom: 12px;
-  right: 12px;
-  font: 11px/1 system-ui, sans-serif;
-  color: rgba(128,128,128,0.5);
-  pointer-events: none;
-  z-index: 2147483647;
-  transition: opacity 0.4s ease;
-  user-select: none;
-  letter-spacing: 0.02em;
-}
 
-/* Hide chrome on touch devices */
-@media (hover: none) {
-  .design-ui-credit { display: none; }
-}
-
-/* Print fixes */
-@media print {
-  * {
-    transition: none !important;
-    animation: none !important;
-    box-shadow: none !important;
-  }
-  body {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-  .design-ui-credit { display: none !important; }
-}
-
-</style>
-<script>
-(function () {
-    // Chrome UI (hover devices only): credit badge with idle-fade.
-    // Deferred until body exists since the script may run in <head>.
-    function initChromeUI() {
-        if (!matchMedia('(hover: hover)').matches) return;
-
-        var credit = document.createElement('div');
-        credit.className = 'design-ui-credit';
-        credit.setAttribute('aria-hidden', 'true');
-        credit.innerHTML = '\u{1F49C} by ClickUp Brain';
-        document.body.appendChild(credit);
-
-        var timer = null;
-        var fade = function (out) { credit.style.opacity = out ? '0' : ''; };
-        fade(true);
-        var show = function () {
-            fade(false);
-            clearTimeout(timer);
-            timer = setTimeout(function () { fade(true); }, 3000);
-        };
-        document.addEventListener('mousemove', show);
-        show();
-    }
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initChromeUI);
-    } else {
-        initChromeUI();
-    }
-})();
-
-</script>
-<!-- /skill:chrome -->
 {% extends 'website/base.html' %}
 {% load static %}
 
@@ -91,8 +23,8 @@
                 <img src="{% static 'website/images/hero.jpg' %}" alt="African women learning technology together" onerror="this.parentElement.innerHTML='<div class=hero-image-placeholder></div>'">
             </div>
             <div class="hero-stat-float">
-                <div class="number">15K+</div>
-                <div class="label">Women<br>Empowered</div>
+                <div class="number">Growing</div>
+                <div class="label">Our community<br>and programmes</div>
             </div>
         </div>
     </div>
@@ -139,28 +71,16 @@
     </div>
 </section>
 
-<!-- Impact Stats -->
+<!-- Impact & Current Focus -->
 <section class="impact fade-in">
     <div class="impact-inner">
-        <h2>Our Impact Across Africa</h2>
-        <p>Measurable change, one community at a time</p>
+        <h2>Building Our Impact, One Step at a Time</h2>
+        <p>As a growing organisation, we are focused on creating meaningful opportunities and measuring our progress transparently.</p>
         <div class="impact-grid">
-            <div class="impact-item">
-                <div class="impact-number" data-target="15000">0</div>
-                <div class="impact-label">Women & Girls Trained</div>
-            </div>
-            <div class="impact-item">
-                <div class="impact-number" data-target="12">0</div>
-                <div class="impact-label">African Countries</div>
-            </div>
-            <div class="impact-item">
-                <div class="impact-number" data-target="850">0</div>
-                <div class="impact-label">Businesses Launched</div>
-            </div>
-            <div class="impact-item">
-                <div class="impact-number" data-target="95">0</div>
-                <div class="impact-label">% Employment Rate</div>
-            </div>
+            <div class="impact-item"><div class="impact-number">01</div><div class="impact-label">Digital Skills & AI Learning</div></div>
+            <div class="impact-item"><div class="impact-number">02</div><div class="impact-label">Mentorship & Leadership</div></div>
+            <div class="impact-item"><div class="impact-number">03</div><div class="impact-label">Entrepreneurship & Financial Empowerment</div></div>
+            <div class="impact-item"><div class="impact-number">04</div><div class="impact-label">Community & Strategic Partnerships</div></div>
         </div>
     </div>
 </section>
@@ -225,86 +145,38 @@
     </div>
 </section>
 
-<!-- Testimonials -->
-<section class="testimonials fade-in">
-    <div class="testimonials-inner">
-        <div class="section-header">
-            <h2>Voices of Change</h2>
-            <p>Stories from women whose lives have been transformed through our programs</p>
-        </div>
-        <div class="testimonial-grid">
-            <div class="testimonial">
-                <p class="testimonial-quote">Savannah Women Tech didn't just teach me to code. It gave me the confidence to build my own startup. Today I employ 12 people and serve thousands of customers across East Africa.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">AW</div>
-                    <div>
-                        <div class="testimonial-name">Amina Wanjiku</div>
-                        <div class="testimonial-role">CEO, TechServe Kenya | Cohort 2023</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial">
-                <p class="testimonial-quote">The AI program opened doors I never knew existed. I went from teaching high school math to leading a machine learning team at a fintech company in just 18 months.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">FN</div>
-                    <div>
-                        <div class="testimonial-name">Fatima Ndegwa</div>
-                        <div class="testimonial-role">ML Engineer, PayStack | AI Cohort 2024</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Partners -->
+<!-- Partnership Spotlight -->
 <section class="partners fade-in">
     <div class="partners-inner">
-        <h2>Trusted By Leading Organizations</h2>
-        <div class="partners-logos">
-            <div class="partner-logo">Google.org</div>
-            <div class="partner-logo">Microsoft</div>
-            <div class="partner-logo">USAID</div>
-            <div class="partner-logo">African Dev Bank</div>
-            <div class="partner-logo">UN Women</div>
-            <div class="partner-logo">Safaricom</div>
+        <div class="section-header">
+            <h2>Partnership Spotlight: Winza Heritage</h2>
+            <p>Celebrating African heritage through a stronger digital presence.</p>
+        </div>
+        <div class="news-featured">
+            <div class="news-featured-content">
+                <span class="news-tag">Website Design & Development</span>
+                <h3>Supporting Winza Heritage's Digital Story</h3>
+                <p>Savannah Women Tech collaborated with Winza Heritage on its website, helping present its cultural story, heritage-inspired collections, and work to a wider online audience.</p>
+                <a href="https://preciouskorir.github.io/winza-heritage-website/about.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore Winza Heritage</a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Latest News -->
+<!-- Upcoming Event -->
 <section class="news fade-in">
     <div class="news-inner">
         <div class="section-header">
-            <h2>Latest Updates</h2>
-            <p>News, insights, and stories from across our community</p>
+            <h2>Upcoming Event</h2>
+            <p>Connect with our community and take part in the conversation.</p>
         </div>
-        <div class="news-grid">
-            <div class="news-featured">
-                <div class="news-featured-img"></div>
-                <div class="news-featured-content">
-                    <span class="news-tag">Announcement</span>
-                    <h3>Savannah Women Tech Launches Pan-African AI Fellowship for 500 Women</h3>
-                    <p>Our largest initiative yet will provide fully-funded AI training, mentorship, and job placement across 12 African nations starting January 2027.</p>
-                    <div class="news-date">June 25, 2026</div>
-                </div>
-            </div>
-            <div class="news-list">
-                <div class="news-item">
-                    <span class="news-tag">Success Story</span>
-                    <h4>Graduate Spotlight: How Njeri Built a Climate Tech Startup</h4>
-                    <p>June 20, 2026</p>
-                </div>
-                <div class="news-item">
-                    <span class="news-tag">Events</span>
-                    <h4>Registration Open: Women in AI Summit Nairobi 2026</h4>
-                    <p>June 15, 2026</p>
-                </div>
-                <div class="news-item">
-                    <span class="news-tag">Partnership</span>
-                    <h4>New Partnership with Google to Train 2,000 Women in Cloud</h4>
-                    <p>June 10, 2026</p>
-                </div>
+        <div class="news-featured">
+            <div class="news-featured-content">
+                <span class="news-tag">Community Event</span>
+                <h3>Women Leaders Are Readers – Launch Evening</h3>
+                <p>Join us for the Women Leaders Are Readers event. Visit the event page for the latest date, venue, programme information, and registration details.</p>
+                <a href="https://www.eventbrite.com/e/savannah-women-leaders-are-readers-launch-evening-tickets-2004800247508" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Event & Register</a>
+                <p><a href="{% url 'events' %}">See all upcoming events</a></p>
             </div>
         </div>
     </div>
