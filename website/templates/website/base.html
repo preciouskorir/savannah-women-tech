@@ -31,6 +31,7 @@
                 <li><a href="{% url 'blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog</a></li>
                 <li><a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
                 <li><a href="{% url 'volunteer' %}" class="{% if request.resolver_match.url_name == 'volunteer' %}active{% endif %}">Volunteer</a></li>
+                <li><a href="{% url 'membership' %}" class="{% if request.resolver_match.url_name == 'membership' %}active{% endif %}">Membership</a></li>
                 <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
                 <li><a href="{% url 'donate' %}" class="nav-donate">Donate</a></li>
             </ul>
