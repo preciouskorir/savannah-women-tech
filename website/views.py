@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import redirect, render
+
+from .forms import MembershipApplicationForm
 
 
 def home(request):
@@ -35,3 +38,19 @@ def contact(request):
 
 def donate(request):
     return render(request, 'website/donate.html')
+
+
+def membership(request):
+    if request.method == "POST":
+        form = MembershipApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "Thank you for applying to join Savannah Women Tech. Your application has been received and is awaiting review.",
+            )
+            return redirect("membership")
+    else:
+        form = MembershipApplicationForm()
+
+    return render(request, "website/membership.html", {"form": form})
