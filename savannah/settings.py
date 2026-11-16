@@ -56,12 +56,23 @@ if WEBSITE_HOSTNAME and WEBSITE_HOSTNAME not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(WEBSITE_HOSTNAME)
 
 CSRF_TRUSTED_ORIGINS = _env_list('DJANGO_CSRF_TRUSTED_ORIGINS')
+
+CSRF_TRUSTED_ORIGINS += [
+    'https://savanahwomentech-hdckh8a6fhhbbraz.azurewebsites.net',
+    'https://savanahwomentech.azurewebsites.net',
+    'https://savannah-women-tech.onrender.com',
+]
+
 if WEBSITE_HOSTNAME:
     CSRF_TRUSTED_ORIGINS.append(f'https://{WEBSITE_HOSTNAME}')
-if DEBUG:
-    CSRF_TRUSTED_ORIGINS += ['http://localhost:8000', 'http://127.0.0.1:8000']
-CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(CSRF_TRUSTED_ORIGINS))
 
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS += [
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+    ]
+
+CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(CSRF_TRUSTED_ORIGINS))
 
 # Azure App Service terminates TLS at the front end and forwards the original
 # scheme in X-Forwarded-Proto, which Django ignores by default. Without this,
