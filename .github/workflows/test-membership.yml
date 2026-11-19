@@ -1,9 +1,10 @@
-name: Validate Django membership changes
+name: Validate Django application changes
 
 on:
   push:
     branches:
       - feat/neon-membership-registration
+      - feature/programme-applications
   pull_request:
     branches:
       - main
@@ -27,6 +28,9 @@ jobs:
 
       - name: Run Django system checks
         run: python manage.py check
+
+      - name: Run application tests
+        run: python manage.py test website
 
       - name: Check migration consistency
         run: python manage.py makemigrations --check --dry-run

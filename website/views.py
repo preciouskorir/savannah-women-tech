@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from .forms import MembershipApplicationForm
+from .forms import MembershipApplicationForm, ProgrammeApplicationForm
+from .models import ProgrammeApplication
 
 
 def home(request):
@@ -54,3 +55,31 @@ def membership(request):
         form = MembershipApplicationForm()
 
     return render(request, "website/membership.html", {"form": form})
+
+
+def programme_application(request):
+    valid_programmes = {choice[0] for choice in ProgrammeApplication.Programme.choices}
+
+    if request.method == "POST":
+        form = ProgrammeApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "Thank you for applying. Savannah Women Tech has received your programme application. Our team will review it and contact you about the outcome.",
+            )
+            return redirect("programme_application")
+    else:
+        selected_programme = request.GET.get("programme", "")
+        initial = (
+            {"programme": selected_programme}
+            if selected_programme in valid_programmes
+            else {}
+        )
+        form = ProgrammeApplicationForm(initial=initial)
+
+    return render(
+        request,
+        "website/programme_application.html",
+        {"form": form},
+    )
