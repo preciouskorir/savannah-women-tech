@@ -1,0 +1,102 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Apply for a Programme{% endblock %}
+{% block meta_description %}Apply to a Savannah Women Tech programme. Submit your details and our team will review your application.{% endblock %}
+
+{% block extra_css %}
+<style>
+.application-section { padding: 64px 20px 88px; background: #f8f7f2; }
+.application-container { max-width: 820px; margin: 0 auto; }
+.application-card { background: #fff; border-radius: 16px; padding: 36px; box-shadow: 0 12px 36px rgba(27,38,59,.08); }
+.application-card h2 { color: #1B263B; margin: 0 0 10px; }
+.application-intro { color: #596273; line-height: 1.7; margin-bottom: 28px; }
+.application-form .field { margin-bottom: 20px; }
+.application-form label { display: block; color: #1B263B; font-weight: 600; margin-bottom: 8px; }
+.application-form input:not([type=checkbox]), .application-form select, .application-form textarea { width: 100%; padding: 13px 14px; border: 1px solid #d8dce2; border-radius: 8px; font: inherit; box-sizing: border-box; }
+.application-form input:focus, .application-form select:focus, .application-form textarea:focus { outline: 2px solid #006D77; border-color: #006D77; }
+.application-form .helptext { display: block; color: #687386; font-size: .9rem; margin-top: 6px; }
+.application-form .consent { display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.application-form .consent input { margin-top: 5px; }
+.application-form .errorlist { color: #a12626; margin: 6px 0 0; padding-left: 20px; }
+.application-alert { padding: 14px 16px; border-radius: 8px; margin-bottom: 20px; background: #e8f4ef; color: #185b43; }
+.application-submit { border: 0; border-radius: 8px; background: #006D77; color: #fff; padding: 14px 24px; font: inherit; font-weight: 700; cursor: pointer; }
+.application-submit:hover { background: #1B263B; }
+.application-note { margin-top: 18px; color: #687386; font-size: .9rem; line-height: 1.6; }
+@media (max-width: 600px) { .application-card { padding: 24px 18px; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <h1>Programme <span class="highlight">Application</span></h1>
+        <p>Tell us a little about yourself and the Savannah Women Tech programme you would like to join.</p>
+    </div>
+</section>
+
+<section class="application-section">
+    <div class="application-container">
+        <div class="application-card">
+            <h2>Apply to a Savannah programme</h2>
+            <p class="application-intro">Complete the form below. Your application will be reviewed by the Savannah Women Tech team. Submitting this form does not guarantee a place; we will contact you after reviewing your application.</p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="application-alert" role="status">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" class="application-form">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div class="field">
+                    <label for="{{ form.full_name.id_for_label }}">Full name</label>
+                    {{ form.full_name }}
+                    {{ form.full_name.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.email.id_for_label }}">Email address</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.phone.id_for_label }}">Phone number (optional)</label>
+                    {{ form.phone }}
+                    {{ form.phone.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.country.id_for_label }}">Country</label>
+                    {{ form.country }}
+                    {{ form.country.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.programme.id_for_label }}">Programme you are applying for</label>
+                    {{ form.programme }}
+                    {{ form.programme.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.background.id_for_label }}">Education, work or relevant experience (optional)</label>
+                    {{ form.background }}
+                    {{ form.background.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.motivation.id_for_label }}">Why are you interested in this programme?</label>
+                    {{ form.motivation }}
+                    {{ form.motivation.errors }}
+                </div>
+                <div class="field">
+                    <label class="consent">
+                        {{ form.consent }}
+                        <span>I agree that Savannah Women Tech may use these details to review my programme application and contact me about it.</span>
+                    </label>
+                    {{ form.consent.errors }}
+                </div>
+
+                <button type="submit" class="application-submit">Submit programme application</button>
+            </form>
+            <p class="application-note">Please provide accurate contact details so our team can reach you. Do not include sensitive personal or financial information in this form.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
