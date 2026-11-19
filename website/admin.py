@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils import timezone
 
-from .models import MembershipApplication
+from .models import MembershipApplication, ProgrammeApplication
 
 
 @admin.register(MembershipApplication)
@@ -22,8 +22,64 @@ class MembershipApplicationAdmin(admin.ModelAdmin):
 
     @admin.action(description="Approve selected membership applications")
     def approve_applications(self, request, queryset):
-        queryset.update(status=MembershipApplication.Status.APPROVED, reviewed_at=timezone.now())
+        queryset.update(
+            status=MembershipApplication.Status.APPROVED,
+            reviewed_at=timezone.now(),
+        )
 
     @admin.action(description="Decline selected membership applications")
     def decline_applications(self, request, queryset):
-        queryset.update(status=MembershipApplication.Status.DECLINED, reviewed_at=timezone.now())
+        queryset.update(
+            status=MembershipApplication.Status.DECLINED,
+            reviewed_at=timezone.now(),
+        )
+
+
+@admin.register(ProgrammeApplication)
+class ProgrammeApplicationAdmin(admin.ModelAdmin):
+    list_display = (
+        "full_name",
+        "email",
+        "programme",
+        "country",
+        "status",
+        "submitted_at",
+        "reviewed_at",
+    )
+    list_filter = ("programme", "status", "country", "submitted_at")
+    search_fields = (
+        "full_name",
+        "email",
+        "phone",
+        "country",
+        "background",
+        "motivation",
+    )
+    ordering = ("-submitted_at",)
+    readonly_fields = ("submitted_at", "reviewed_at")
+    actions = (
+        "shortlist_applications",
+        "accept_applications",
+        "decline_applications",
+    )
+
+    @admin.action(description="Shortlist selected programme applications")
+    def shortlist_applications(self, request, queryset):
+        queryset.update(
+            status=ProgrammeApplication.Status.SHORTLISTED,
+            reviewed_at=timezone.now(),
+        )
+
+    @admin.action(description="Accept selected programme applications")
+    def accept_applications(self, request, queryset):
+        queryset.update(
+            status=ProgrammeApplication.Status.ACCEPTED,
+            reviewed_at=timezone.now(),
+        )
+
+    @admin.action(description="Decline selected programme applications")
+    def decline_applications(self, request, queryset):
+        queryset.update(
+            status=ProgrammeApplication.Status.DECLINED,
+            reviewed_at=timezone.now(),
+        )
